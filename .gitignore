@@ -1,0 +1,7 @@
+*.iml
+/**/*.iml
+target
+/**/target
+.idea
+.DS_Store
+/apps-license/src/main/java/*.iml
