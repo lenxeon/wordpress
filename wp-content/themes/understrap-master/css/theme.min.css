@@ -4131,7 +4131,7 @@ input[type="button"].btn-block {
   align-items: center; }
 
 .navbar-toggler {
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.25rem;
   font-size: 1.25rem;
   line-height: 1;
   background-color: transparent;
@@ -7972,6 +7972,10 @@ a.text-dark:hover, a.text-dark:focus {
 .wrapper {
   padding: 0; }
 
+.container {
+  box-sizing: border-box !important;
+  overflow-x: hidden !important; }
+
 #wrapper-hero {
   padding: 0px !important; }
 
@@ -8319,7 +8323,8 @@ body {
     #wrapper-navbar .navbar-brand img.brand {
       color: white;
       height: 24px;
-      width: 24px; }
+      width: 24px;
+      margin-right: 5px; }
   #wrapper-navbar #main-menu > li > a {
     text-shadow: 0 1px 1px #5010a8;
     padding-right: 1rem;
@@ -8327,7 +8332,7 @@ body {
   #wrapper-navbar .navbar {
     height: 56px;
     padding: .5rem 1rem;
-    box-sizing: content-box;
+    box-sizing: border-box;
     background-color: transparent !important; }
   #wrapper-navbar.fixed {
     left: 0;

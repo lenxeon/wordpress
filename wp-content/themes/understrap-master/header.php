@@ -129,7 +129,7 @@ $GLOBALS['uri'] = $uri;
 						'walker'          => new Understrap_WP_Bootstrap_Navwalker(),
 					)
 				); ?>
-                <a class="btn btn-sm btn-white btn-circle btn-icon d-none d-lg-inline-flex" href="/sign-in">注册体验</a>
+                <a class="btn btn-sm btn-white btn-circle btn-icon d-none d-lg-inline-flex" href="/sign-in">免费体验</a>
 			<?php if ( 'container' == $container ) : ?>
 			</div><!-- .container -->
 			<?php endif; ?>

@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+.container {
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
 // Reset hero wrapper padding to 0
 #wrapper-hero {
   padding: 0px !important;
@@ -485,6 +490,7 @@ body {
       color: white;
       height: 24px;
       width: 24px;
+      margin-right: 5px;
     }
   }
   #main-menu {
@@ -497,7 +503,7 @@ body {
   .navbar {
     height: 56px;
     padding: .5rem 1rem;
-    box-sizing: content-box;
+    box-sizing: border-box;
     background-color: transparent !important;
   }
 

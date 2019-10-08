@@ -27,7 +27,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                             <div>
                                 <i class="fa fa-location-arrow" aria-hidden="true"></i>
                             </div>
-                            <div><span class="pl-3 d-inline-block">北京市-朝阳区<br>小营路房地置业大厦1601</span>
+                            <div><span class="pl-3 d-inline-block">暂无内容</span>
                             </div>
                         </li>
                         <li class="d-flex py-2">
@@ -35,7 +35,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                                 <i class="fa fa-phone-square" aria-hidden="true"></i>
                             </div>
                             <div>
-                                <span class="pl-3 d-inline-block">400-898-0813</span>
+                                <span class="pl-3 d-inline-block">暂无内容</span>
                             </div>
                         </li>
                         <li class="d-flex py-2">
@@ -43,7 +43,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                                  <i class="fa fa-envelope-open"></i>
                             </div>
                             <div>
-                                <span class="pl-3 d-inline-block">service@yugusoft.com</span>
+                                <span class="pl-3 d-inline-block">暂无内容</span>
                             </div>
                         </li>
                     </ul>
