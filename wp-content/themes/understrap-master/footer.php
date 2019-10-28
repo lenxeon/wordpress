@@ -87,10 +87,10 @@ $container = get_theme_mod( 'understrap_container_type' );
     <div class="container">
         <div class="align-items-center">
             <div class="text-center">
-                <a href="../">
-                    <img src="<?php echo get_template_directory_uri().'/css/images/design-story.svg' ?>" class="alpha-6 alpha-10--hover" style="width: 70px;">
-                </a>
-                <span class="d-block mt-4">© 2018 <a href="https://webpixels.io/" class="footer-link" target="_blank">京ICP备13026048号-6</a>. All rights reserved.</span>
+<!--                <a href="../">-->
+<!--                    <img src="--><?php //echo get_template_directory_uri().'/css/images/design-story.svg' ?><!--" class="alpha-6 alpha-10--hover" style="width: 70px;">-->
+<!--                </a>-->
+<!--                <span class="d-block mt-4">© 2018 <a href="https://webpixels.io/" class="footer-link" target="_blank">京ICP备13026048号-6</a>. All rights reserved.</span>-->
             </div>
         </div>
     </div>
