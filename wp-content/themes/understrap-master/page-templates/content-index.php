@@ -129,7 +129,8 @@
 
 <section class="slice slice-lg bg-secondary">
     <?php
-      $url = get_template_directory_uri() . '/page-templates/movies.json';
+      $url = 'https://www.kanmeiju.com.cn/' . get_template_directory_uri() . '/page-templates/movies.json';
+      echo $url;
       $data = file_get_contents($url);
       $movies = json_decode($data,true);
     ?>
