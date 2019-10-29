@@ -475,57 +475,6 @@
     </script>
 </section>
 
-
-<!--<section class="slice slice-lg delimiter-top">-->
-<!--    <div class="container">-->
-<!--        <div class="mb-md text-center">-->
-<!--            <h3 class="h2">超过 <span class="text-primary">20000</span> 用户的信任之选</h3>-->
-<!--            <div class="fluid-paragraph mt-3">-->
-<!--                <p class="summary">鱼骨项目管理软件——为百万中小企业创造价值.</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="blurable--hover">-->
-<!--            <a href="#">-->
-<!--                <div class="row blurable-item">-->
-<!--                    <div class="col-md-2 col-6 mb-4 mb-md-0">-->
-<!--                        <div class="card px-4 py-4">-->
-<!--                            <img src="../assets/img/prv/partners/img-1.png" class="img-fluid">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-2 col-6 mb-4 mb-md-0">-->
-<!--                        <div class="card px-4 py-4">-->
-<!--                            <img src="../assets/img/prv/partners/img-2.png" class="img-fluid">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-2 col-6 mb-4 mb-md-0">-->
-<!--                        <div class="card px-4 py-4">-->
-<!--                            <img src="../assets/img/prv/partners/img-3.png" class="img-fluid">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-2 col-6 mb-4 mb-md-0">-->
-<!--                        <div class="card px-4 py-4">-->
-<!--                            <img src="../assets/img/prv/partners/img-4.png" class="img-fluid">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-2 col-6 mb-4 mb-md-0">-->
-<!--                        <div class="card px-4 py-4">-->
-<!--                            <img src="../assets/img/prv/partners/img-5.png" class="img-fluid">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-2 col-6 mb-4 mb-md-0">-->
-<!--                        <div class="card px-4 py-4">-->
-<!--                            <img src="../assets/img/prv/partners/img-6.png" class="img-fluid">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <span class="blurable-hidden btn btn-primary btn-circle">立即加入，提升团队效率</span>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-
-
-
 <section class="slice slice-lg bg-secondary">
     <span class="tongue tongue-top"><i class="fa fa-angle-up"></i></span>
     <div class="container">

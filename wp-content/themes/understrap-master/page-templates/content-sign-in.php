@@ -5,7 +5,7 @@
                 <div class="card shadow-lg fadeInDown animated">
                     <div class="card-body px-lg-5 py-lg-5">
                         <div class="text-center mb-5">
-                            <h4 class="heading h3 pt-3">鱼骨项目管理软件</h4>
+                            <h4 class="heading h3 pt-3">看美剧学英语</h4>
                             <p class="text-muted">欢迎您的使用</p>
                         </div>
                         <span class="clearfix"></span>
