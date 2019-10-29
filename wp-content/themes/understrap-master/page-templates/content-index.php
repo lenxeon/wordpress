@@ -130,11 +130,8 @@
 <section class="slice slice-lg bg-secondary">
     <?php
       $url = get_template_directory_uri() . '/page-templates/movies.json';
-      echo $url;
       $data = file_get_contents($url);
-      echo $data;
       $movies = json_decode($data,true);
-      echo $movies;
     ?>
     <style>
         .movies {
