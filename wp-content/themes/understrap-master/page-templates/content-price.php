@@ -5,11 +5,11 @@
             <div class="container py-md d-flex align-items-center">
                 <div class="col">
                     <div class="row align-items-center justify-content-center">
-                        <div class="col-md-7 col-lg-7 text-center">
-                            <h1 class="text-white lh-150 mb-4">自从使用了鱼骨项目管理软件，团队目标从未如此清晰，大家再也不用为今天做了什么，明天要做什么发愁了。</h1>
+                        <div class="col-md-10 col-lg-10 text-center">
+                            <h1 class="text-white lh-150 mb-4"></h1>
                             <ul class="list-inline">
-                                <li class="list-inline-item text-muted">August 21, 2018</li>
-                                <li class="list-inline-item text-muted">Written by lenxeon</li>
+                                <li class="list-inline-item text-muted">看美剧学英语</li>
+                                <li class="list-inline-item text-muted">精准校对英语学习软件</li>
                             </ul>
                             <span class="clearfix"></span>
                             <a href="#" class="btn btn-white btn-circle btn-icon mt-4">
@@ -24,7 +24,7 @@
     </div>
 </section>
 
-<section class="slice slice-lg price-box" style="padding: 30px 0px">
+<section class="slice slice-lg price-box" style="padding: 30px 0px;display: none;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-12">

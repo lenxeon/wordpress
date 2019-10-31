@@ -2,7 +2,7 @@
     <div class="container pt-md">
         <div class="row justify-content-center">
             <span class="mask bg-gradient-primary alpha-6"></span>
-            <div class="container py-md d-flex align-items-center">
+            <div class="container py-md d-flex align-items-center" style="overflow: hidden;">
                 <div class="col">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-8 col-lg-8 text-center">
@@ -63,7 +63,7 @@
                             </div>
                             <div class="icon-text">
                                 <h5 class="h5">敏感信息加密服务</h5>
-                                <p class="mb-0">鱼骨对客户的敏捷信息进行了加密服务，保障了即使遭遇黑客攻击也能有效防止数据泄漏.</p>
+                                <p class="mb-0">对客户的敏捷信息进行了加密服务，保障了即使遭遇黑客攻击也能有效防止数据泄漏.</p>
                             </div>
                         </div>
                     </div>

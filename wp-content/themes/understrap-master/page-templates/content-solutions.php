@@ -29,7 +29,7 @@
         <div class="mb-md text-center">
             <h3 class="heading h2">用户过的客户说</h3>
             <div class="fluid-paragraph mt-3">
-                <p class="lead">鱼骨项目管理软件非常专业，稳定，有深度。能给我们的项目带来非常实用的帮助。</p>
+                <p class="lead">项目管理软件非常专业，稳定，有深度。能给我们的项目带来非常实用的帮助。</p>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -38,7 +38,7 @@
                     <div class="col-lg-4">
                         <div class="pr-4">
                             <h4>用户感言</h4>
-                            <p class="lead mt-3">听听我们的用户对鱼骨项目管理产品的评价吧.</p>
+                            <p class="lead mt-3">听听我们的用户对产品的评价吧.</p>
                         </div>
                     </div>
                     <div class="col-lg-8">

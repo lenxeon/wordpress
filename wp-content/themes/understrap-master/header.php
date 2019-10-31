@@ -23,6 +23,8 @@ $GLOBALS['uri'] = $uri;
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="description" content="免费的看美剧学英语app推荐!"/>
+    <meta name="Keywords" content="看美剧学英语、看美剧学英语软件、看美剧学英语APP、看美剧学英语老友记、看美剧学英语推荐、看美剧学英语方法"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="mobile-web-app-capable" content="yes">
