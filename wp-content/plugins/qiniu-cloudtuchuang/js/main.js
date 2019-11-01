@@ -3,130 +3,88 @@
 /*global FileProgress */
 /*global test hljs */
 
-$(function() {
+$(function () {
+    console.log("uptokenurl===>", uptokenurl, host);
 
-    var uploader_btn = Qiniu.uploader({
-        runtimes: 'html5,flash,html4',
-        browse_button: 'qiniu-insert-media-button',
-        container: 'qiniu_cloudtuchuang_post_btn',
-        drop_element: 'container',
-        max_file_size: '1000mb',
-        flash_swf_url: 'js/plupload/js/Moxie.swf',
-        dragdrop: true,
-        chunk_size: '4mb',
-        multi_selection: !(mOxie.Env.OS.toLowerCase()==="ios"),
-        uptoken_url: uptokenurl,
-        // uptoken_func: function(){
-        //     var ajax = new XMLHttpRequest();
-        //     ajax.open('GET', $('#uptoken_url').val(), false);
-        //     ajax.setRequestHeader("If-Modified-Since", "0");
-        //     ajax.send();
-        //     if (ajax.status === 200) {
-        //         var res = JSON.parse(ajax.responseText);
-        //         console.log('custom uptoken_func:' + res.uptoken);
-        //         return res.uptoken;
-        //     } else {
-        //         console.log('custom uptoken_func err');
-        //         return '';
-        //     }
-        // },
-        domain: host,
-        get_new_uptoken: false,
-        // downtoken_url: '/downtoken',
-        // unique_names: true,
-        // save_key: true,
-        // x_vars: {
-        //     'id': '1234',
-        //     'time': function(up, file) {
-        //         var time = (new Date()).getTime();
-        //         // do something with 'time'
-        //         return time;
-        //     },
-        // },
-        auto_start: true,
-        log_level: 5,
-        init: {
-            'FilesAdded': function(up, files) {
+    var getToken = function (name) {
+        var ajax = new XMLHttpRequest();
+        ajax.open('GET', uptokenurl + (name || ''), false);
+        ajax.setRequestHeader("If-Modified-Since", "0");
+        ajax.send();
+        if (ajax.status === 200) {
+            var res = JSON.parse(ajax.responseText);
+            console.log('custom uptoken_func:' + res.uptoken);
+            return res.uptoken;
+        } else {
+            console.log('custom uptoken_func err');
+            return '';
+        }
+    }
 
+    $('#pickfiles').click(function (e) {
+        console.log('qiniu_cloudtuchuang_post', e);
+        $('#qiniu_uploader').trigger('click');
+    });
+
+    $('#qiniu_uploader').on('change', function (e) {
+        console.log(e);
+        uploadFiles(e);
+    })
+
+    getToken('123.jpg');
+
+
+    var uploadFiles = function (e) {
+        let that = this;
+        let files = e.target.files;
+        if (!files || files.length > 30) {
+            console.log("请选择上传的文件，且上传的文件最多不能超过30个");
+            return false;
+        }
+        if (files && files.length > 0) {
+            for (let i = 0; i < files.length; i++) {
+                uploadFile(files[i]);
+            }
+        }
+        e.target.value = null;
+    }
+
+    var uploadFile = function (file) {
+        let ticket = getToken(file.name);
+        if (ticket) {
+            file.ticket = ticket;
+        }
+        uploadQiNiu(file);
+    }
+
+    var uploadQiNiu = function (file) {
+        console.log("uploadQiNiu", file);
+        let config = {
+            useCdnDomain: true,
+            disableStatisticsReport: false,
+            retryCount: 3,
+            region: qiniu.region.z0
+        };
+        var putExtra = {
+            fname: "",
+            params: {},
+            mimeType: null
+        };
+        putExtra.params["x:name"] = file.name.split(".")[0];
+        let observable = qiniu.upload(file, file.saveKey, file.ticket, putExtra, config);
+        var subObject = {
+            next: function (res) {
+                console.log("next", res);
             },
-            'BeforeUpload': function(up, file) {
-
+            error: function (res) {
+                console.log("error", res);
             },
-            'UploadProgress': function(up, file) {
-                span = $('#spandesc').text(file.percent + "%");
-            },
-            'UploadComplete': function() {
-                console.log('上传完成');
-                span = $('#spandesc').text('上传完成');
-            },
-            'FileUploaded': function(up, file, info) {
-                var title = $('#title').val();
-                console.log(title);
-                var obj = eval('(' + info + ')');
-                var key = obj.key;
-                qiniuurl = host + '/' + key;
-                if (imgurl == true) {
-                    var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
-                        + '" alt="' + title
-                        + '" title="' + title
-                        + '">';
-                } else {
-                    var img = '<img src="' + qiniuurl
-                        + '" alt="'
-                        + title
-                        + '" title="'
-                        + title
-                        + '">';
-                }
-                console.log(img);
-
-                var wpActiveEditor,editor,
-                    hasTinymce = typeof tinymce !== 'undefined',
-                    hasQuicktags = typeof QTags !== 'undefined';
-
-                if ( ! wpActiveEditor ) {
-                    if ( hasTinymce && tinymce.activeEditor ) {
-                        editor = tinymce.activeEditor;
-                        wpActiveEditor = editor.id;
-                    } else if ( ! hasQuicktags ) {
-                        return false;
-                    } else {
-                        var mdEditor = window.EditorMD
-                        if(mdEditor){
-                            mdEditor.replaceSelection(["![", title,"](", qiniuurl, ")", "\n"].join(""));
-                        }
-                    }
-                } else if ( hasTinymce ) {
-                    editor = tinymce.get( wpActiveEditor );
-                }
-
-                if ( editor && ! editor.isHidden() ) {
-                    editor.execCommand( 'mceInsertContent', false, img );
-                } else if ( hasQuicktags ) {
-                    QTags.insertContent( img );
-                } else {
-                    document.getElementById( wpActiveEditor ).value += img;
-                }
-
-                // If the old thickbox remove function exists, call it
-                if ( window.tb_remove ) {
-                    try { window.tb_remove(); } catch( e ) {}
-                }
-
-
-                console.log(key+'设置完成');
-
-            },
-            'Error': function(up, err, errTip) {
-                console.log(err.file.name + '上传错误:'+ errTip);
-                console.log('错误代码：' + err.status);
-                var status = err.status;
-                if (status == 614) {
-                    var title = $('#title').val();
-                    console.log(title);
-                    var key = err.file.name;
-                    qiniuurl = host  + key;
-                    if (imgurl == true) {
+            complete: function (res) {
+                console.log("complete", res);
+                if (res.key) {
+                    var qiniuurl = host + '/' + res.key;
+                    console.log(host, res.key, qiniuurl);
+                    if (true) {
                         var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
                             + '" alt="' + title
                             + '" title="' + title
@@ -140,263 +98,77 @@ $(function() {
                             + '">';
                     }
                     console.log(img);
-                    var wpActiveEditor,editor,
+                    var wpActiveEditor, editor,
                         hasTinymce = typeof tinymce !== 'undefined',
                         hasQuicktags = typeof QTags !== 'undefined';
 
-                    if ( ! wpActiveEditor ) {
-                        if ( hasTinymce && tinymce.activeEditor ) {
+                    if (!wpActiveEditor) {
+                        if (hasTinymce && tinymce.activeEditor) {
                             editor = tinymce.activeEditor;
                             wpActiveEditor = editor.id;
-                        } else if ( ! hasQuicktags ) {
+                        } else if (!hasQuicktags) {
                             return false;
+                        } else {
+                            var mdEditor = window.wpEditormd
+                            if (mdEditor) {
+                                mdEditor.replaceSelection(["![", file.name, "](", qiniuurl, ")", "\n"].join(""));
+                            }
                         }
-                    } else if ( hasTinymce ) {
-                        editor = tinymce.get( wpActiveEditor );
+                    } else if (hasTinymce) {
+                        editor = tinymce.get(wpActiveEditor);
                     }
 
 
-                    if ( editor && ! editor.isHidden() ) {
-                        editor.execCommand( 'mceInsertContent', false, img );
-                    } else if ( hasQuicktags ) {
-                        QTags.insertContent( img );
+                    if (editor && !editor.isHidden()) {
+                        editor.execCommand('mceInsertContent', false, img);
+                    } else if (hasQuicktags) {
+                        QTags.insertContent(img);
                     } else {
-                        document.getElementById( wpActiveEditor ).value += img;
+                        document.getElementById(wpActiveEditor).value += img;
                     }
-
-                    // If the old thickbox remove function exists, call it
-                    if ( window.tb_remove ) {
-                        try { window.tb_remove(); } catch( e ) {}
-                    }
-                };
-                span = $('#spandesc').text('上传完成');
+                }
             }
-             ,
-             'Key': function(up, file) {
-                 var key = prefix+file.name;
-                 // do something with key
-                 return key
-             }
-        }
-    });
-
-    uploader_btn.bind('FileUploaded', function() {
-        console.log('hi man,a file is uploaded');
-    });
-
-    var uploader = Qiniu.uploader({
-        runtimes: 'html5,flash,html4',
-        browse_button: 'pickfiles',
-        container: 'qiniu_cloudtuchuang_post',
-        drop_element: 'container',
-        max_file_size: '1000mb',
-        flash_swf_url: 'js/plupload/js/Moxie.swf',
-        dragdrop: true,
-        chunk_size: '4mb',
-        multi_selection: !(mOxie.Env.OS.toLowerCase()==="ios"),
-        uptoken_url: uptokenurl,
-        // uptoken_func: function(){
-        //     var ajax = new XMLHttpRequest();
-        //     ajax.open('GET', $('#uptoken_url').val(), false);
-        //     ajax.setRequestHeader("If-Modified-Since", "0");
-        //     ajax.send();
-        //     if (ajax.status === 200) {
-        //         var res = JSON.parse(ajax.responseText);
-        //         console.log('custom uptoken_func:' + res.uptoken);
-        //         return res.uptoken;
-        //     } else {
-        //         console.log('custom uptoken_func err');
-        //         return '';
-        //     }
-        // },
-        domain: host,
-        get_new_uptoken: false,
-        // downtoken_url: '/downtoken',
-        // unique_names: true,
-        // save_key: true,
-        // x_vars: {
-        //     'id': '1234',
-        //     'time': function(up, file) {
-        //         var time = (new Date()).getTime();
-        //         // do something with 'time'
-        //         return time;
-        //     },
-        // },
-        auto_start: true,
-        log_level: 5,
-        init: {
-            'FilesAdded': function(up, files) {
-
-            },
-            'BeforeUpload': function(up, file) {
-
-            },
-            'UploadProgress': function(up, file) {
-                span = $('#spantxt').text(file.percent + "%");
-            },
-            'UploadComplete': function() {
-                console.log('上传完成');
-                span = $('#spantxt').text('上传完成');
-            },
-            'FileUploaded': function(up, file, info) {
-                var title = $('#title').val();
-                console.log(title);
-                var obj = eval('(' + info + ')');
-                var key = obj.key;
-                qiniuurl = host + '/' + key;
-                if (imgurl == true) {
-                    var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
-                        + '" alt="' + title
-                        + '" title="' + title
-                        + '">';
-                } else {
-                    var img = '<img src="' + qiniuurl
-                        + '" alt="'
-                        + title
-                        + '" title="'
-                        + title
-                        + '">';
-                }
-                console.log(img);
-                var wpActiveEditor,editor,
-                    hasTinymce = typeof tinymce !== 'undefined',
-                    hasQuicktags = typeof QTags !== 'undefined';
-
-                if ( ! wpActiveEditor ) {
-                    if ( hasTinymce && tinymce.activeEditor ) {
-                        editor = tinymce.activeEditor;
-                        wpActiveEditor = editor.id;
-                    } else if ( ! hasQuicktags ) {
-                        return false;
-                    } else {
-                        var mdEditor = window.EditorMD
-                        if(mdEditor){
-                            mdEditor.replaceSelection(["![", title,"](", qiniuurl, ")", "\n"].join(""));
-                        }
-                    }
-                } else if ( hasTinymce ) {
-                    editor = tinymce.get( wpActiveEditor );
-                }
+        };
+        subscription = observable.subscribe(subObject);
+    }
 
 
-                if ( editor && ! editor.isHidden() ) {
-                    editor.execCommand( 'mceInsertContent', false, img );
-                } else if ( hasQuicktags ) {
-                    QTags.insertContent( img );
-                } else {
-                    document.getElementById( wpActiveEditor ).value += img;
-                }
-
-                // If the old thickbox remove function exists, call it
-                if ( window.tb_remove ) {
-                    try { window.tb_remove(); } catch( e ) {}
-                }
-                console.log(key+'设置完成');
-
-            },
-            'Error': function(up, err, errTip) {
-                console.log(err.file.name + '上传错误:'+ errTip);
-                console.log('错误代码：' + err.status);
-                var status = err.status;
-                if (status == 614) {
-                    var title = $('#title').val();
-                    console.log(title);
-                    var key = err.file.name;
-                    qiniuurl = host  + key;
-                    if (imgurl == true) {
-                        var img = '<a href="' + qiniuurl + '"><img src="' + qiniuurl
-                            + '" alt="' + title
-                            + '" title="' + title
-                            + '">';
-                    } else {
-                        var img = '<img src="' + qiniuurl
-                            + '" alt="'
-                            + title
-                            + '" title="'
-                            + title
-                            + '">';
-                    }
-                    console.log(img);
-                    var wpActiveEditor,editor,
-                        hasTinymce = typeof tinymce !== 'undefined',
-                        hasQuicktags = typeof QTags !== 'undefined';
-
-                    if ( ! wpActiveEditor ) {
-                        if ( hasTinymce && tinymce.activeEditor ) {
-                            editor = tinymce.activeEditor;
-                            wpActiveEditor = editor.id;
-                        } else if ( ! hasQuicktags ) {
-                            return false;
-                        }
-                    } else if ( hasTinymce ) {
-                        editor = tinymce.get( wpActiveEditor );
-                    }
-
-
-                    if ( editor && ! editor.isHidden() ) {
-                        editor.execCommand( 'mceInsertContent', false, img );
-                    } else if ( hasQuicktags ) {
-                        QTags.insertContent( img );
-                    } else {
-                        document.getElementById( wpActiveEditor ).value += img;
-                    }
-
-                    // If the old thickbox remove function exists, call it
-                    if ( window.tb_remove ) {
-                        try { window.tb_remove(); } catch( e ) {}
-                    }
-                };
-                span = $('#spantxt').text('上传完成');
-            }
-             ,
-             'Key': function(up, file) {
-                 var key = prefix+file.name;
-                 // do something with key
-                 return key
-             }
-        }
-    });
-
-    uploader.bind('FileUploaded', function() {
-        console.log('hi man,a file is uploaded');
-    });
     $('#container').on(
         'dragenter',
-        function(e) {
+        function (e) {
             e.preventDefault();
             $('#container').addClass('draging');
             e.stopPropagation();
         }
-    ).on('drop', function(e) {
+    ).on('drop', function (e) {
         e.preventDefault();
         $('#container').removeClass('draging');
         e.stopPropagation();
-    }).on('dragleave', function(e) {
+    }).on('dragleave', function (e) {
         e.preventDefault();
         $('#container').removeClass('draging');
         e.stopPropagation();
-    }).on('dragover', function(e) {
+    }).on('dragover', function (e) {
         e.preventDefault();
         $('#container').addClass('draging');
         e.stopPropagation();
     });
 
 
-
-    $('#show_code').on('click', function() {
+    $('#show_code').on('click', function () {
         $('#myModal-code').modal();
-        $('pre code').each(function(i, e) {
+        $('pre code').each(function (i, e) {
             hljs.highlightBlock(e);
         });
     });
 
 
-    $('body').on('click', 'table button.btn', function() {
+    $('body').on('click', 'table button.btn', function () {
         $(this).parents('tr').next().toggle();
     });
 
 
-    var getRotate = function(url) {
+    var getRotate = function (url) {
         if (!url) {
             return 0;
         }
@@ -409,7 +181,7 @@ $(function() {
         return 0;
     };
 
-    $('#myModal-img .modal-body-footer').find('a').on('click', function() {
+    $('#myModal-img .modal-body-footer').find('a').on('click', function () {
         var img = $('#myModal-img').find('.modal-body img');
         var key = img.data('key');
         var oldUrl = img.attr('src');
@@ -444,7 +216,7 @@ $(function() {
             });
         }
 
-        $('#myModal-img .modal-body-footer').find('a.disabled').each(function() {
+        $('#myModal-img .modal-body-footer').find('a.disabled').each(function () {
 
             var watermark = $(this).data('watermark');
             var imageView = $(this).data('imageview');
@@ -502,7 +274,7 @@ $(function() {
 
         var newImg = new Image();
         img.attr('src', 'images/loading.gif');
-        newImg.onload = function() {
+        newImg.onload = function () {
             img.attr('src', newUrl);
             img.parent('a').attr('href', newUrl);
         };

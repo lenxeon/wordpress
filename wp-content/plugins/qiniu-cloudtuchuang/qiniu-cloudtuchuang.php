@@ -181,10 +181,10 @@ function qiniucloudtuchuang_imgurl_output() {
 add_action('submitpost_box', 'qiniu_cloudtuchuang_script');
 function qiniu_cloudtuchuang_script(){
 
-    wp_enqueue_script( 'qiniu-jquery', plugins_url('js/qiniujq.min.js', __FILE__));
+//    wp_enqueue_script( 'qiniu-jquery', plugins_url('js/qiniujq.min.js', __FILE__));
     //wp_enqueue_script( 'plupload-all',plugins_url('js/plupload/js/plupload.full.min.js', __FILE__) );
-	wp_enqueue_script( 'plupload-all');
-    wp_enqueue_script( 'qiniu', plugins_url('js/qiniu.js', __FILE__));
+//	wp_enqueue_script( 'plupload-all');
+    wp_enqueue_script( 'qiniu', plugins_url('js/qiniu.min.js', __FILE__));
     wp_enqueue_script( 'qiniu-main', plugins_url('js/main.js', __FILE__ ),array( 'jquery' ));
     wp_enqueue_script( 'qiniu-ui', plugins_url('js/ui.js', __FILE__));
 }    
@@ -220,7 +220,17 @@ function qiniu_cloudtuchuang_post_html(){
 	//$nonce = wp_create_nonce('cloudtuchuang');
     //echo 'var uptokenurl=\''. plugins_url('token.php', __FILE__) . '?_ajax_nonce='. $nonce .'&secretKey='. $secretkey . '&accessKey=' . $accesskey . '&bucket=' . $bucket . '&prefix=' . $prefix .'\'</script>';
 	echo 'var uptokenurl=\''. plugins_url('token.php', __FILE__) . '?secretKey='. $secretkey . '&accessKey=' . $accesskey . '&bucket=' . $bucket . '&prefix=' . $prefix .'\'</script>';
-    echo '<div id="qiniu_cloudtuchuang_post"><div id="pickfiles" href="#" ><span id="spantxt">上传图片</span></div></div>';
+    echo '<div id="qiniu_cloudtuchuang_post">'
+            .'<div id="pickfiles" href="#" >'
+                .'<span id="spantxt">上传图片</span>'
+            .'</div>'
+            .'<input type="file" name="file" id="qiniu_uploader"
+                               accept="*/*"
+                               multiple
+                               style="width: 0px;height: 0px;visibility: hidden;"
+                               class="input-file-uploader"
+                               placeholder="上传文件">'
+        .'</div>';
 }
 
 add_action('media_buttons', 'qiniucloudtuchuang_add_my_media_button');

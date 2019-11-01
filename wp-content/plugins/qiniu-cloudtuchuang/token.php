@@ -20,7 +20,7 @@ $bucket = addslashes($_GET['bucket']);
 $prefix = addslashes($_GET['prefix']);
 
 $opts = array(
-	        'saveKey'    => $prefix . '/$(fname)'
+	        'saveKey'    => $prefix
             );
 
 $token = $auth->uploadToken($bucket, null, 3600, $opts);
