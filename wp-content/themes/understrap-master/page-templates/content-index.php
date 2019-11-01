@@ -198,7 +198,7 @@
         <div class="mb-md text-center">
             <h3>依托腾讯视频提供服务、海外原声大片资源应有尽有</h3>
             <div class="fluid-paragraph text-center mt-4">
-                <p class="summary lh-180">学飞从未</p>
+                <p class="summary lh-180">看看我们如此有趣的教学资源，您还不来一起试试么</p>
             </div>
         </div>
         <div class="row row-grid">
@@ -271,7 +271,7 @@
 <section class="slice slice-lg">
     <div class="container" style="overflow: hidden;">
         <div class="mb-md text-center">
-            <h3 class="heading h2">300000英语爱好者的选择</h3>
+            <h3 class="heading h2">3000英语爱好者的选择</h3>
             <div class=" mt-3">
                 <p class="lead text-left ">看美剧学英语提供了一个精准的口语练习环境，每一句都经过三次以上人工校对时间。
                     而网上其它软件大都是简单的根据字幕确定回放时间，99%的句子都有定位不准确的问题，
