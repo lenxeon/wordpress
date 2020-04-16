@@ -16,7 +16,13 @@
             width: 80%;
         }
     </style>
-    <video loop="loop" id="home_video" poster="images/home/video.jpg" muted="muted" preload="auto" autoplay="autoplay">
+    <video loop="loop" id="home_video" poster="images/home/video.jpg" muted="muted"
+           x5-video-player-fullscreen="true"
+           webkit-playsinline="true"
+           x-webkit-airplay="true"
+           playsinline="true"
+           x5-playsinline
+           preload="auto" autoplay="autoplay">
         <source src="https://sblog.teamillion.com/video/home.mp4" type="video/mp4">
 <!--        <source src="--><?php //echo get_template_directory_uri().'/css/images/scrum.mp4' ?><!--" type="video/mp4">-->
     </video>
@@ -29,7 +35,13 @@
             <div class="col-lg-4">
                 <div class="card shadow-sm shadow--hover">
                     <div class="py-4 text-center" style="padding-top: 0px !important;">
-                        <video loop="loop" id="home_video" poster="images/home/video.jpg" muted="muted" preload="auto" autoplay="autoplay" style="width: 100%; margin: 0 auto;">
+                        <video loop="loop" id="home_video" poster="images/home/video.jpg" muted="muted"
+                           x5-video-player-fullscreen="true"
+                           webkit-playsinline="true"
+                           x-webkit-airplay="true"
+                           playsinline="true"
+                           x5-playsinline
+                           preload="auto" autoplay="autoplay" style="width: 100%; margin: 0 auto;">
                             <source src="https://sblog.teamillion.com/video/point.mp4?v=3" type="video/mp4">
                             <!--        <source src="--><?php //echo get_template_directory_uri().'/css/images/scrum.mp4' ?><!--" type="video/mp4">-->
                         </video>
@@ -44,7 +56,13 @@
             <div class="col-lg-4">
                 <div class="card shadow-sm shadow--hover">
                     <div class="py-4 text-center" style="padding-top: 0px !important;">
-                        <video loop="loop" id="home_video" poster="images/home/video.jpg" muted="muted" preload="auto" autoplay="autoplay" style="width: 100%; margin: 0 auto;">
+                        <video loop="loop" id="home_video" poster="images/home/video.jpg" muted="muted"
+                           x5-video-player-fullscreen="true"
+                           webkit-playsinline="true"
+                           x-webkit-airplay="true"
+                           playsinline="true"
+                           x5-playsinline
+                           preload="auto" autoplay="autoplay" style="width: 100%; margin: 0 auto;">
                             <source src="https://sblog.teamillion.com/video/replay.mp4?v=3" type="video/mp4">
                             <!--        <source src="--><?php //echo get_template_directory_uri().'/css/images/scrum.mp4' ?><!--" type="video/mp4">-->
                         </video>
@@ -60,7 +78,13 @@
             <div class="col-lg-4">
                 <div class="card shadow-sm shadow--hover">
                     <div class="py-4 text-center" style="padding-top: 0px !important;">
-                        <video loop="loop" id="home_video" poster="images/home/video.jpg" muted="muted" preload="auto" autoplay="autoplay" style="width: 100%; margin: 0 auto;">
+                        <video loop="loop" id="home_video" poster="images/home/video.jpg" muted="muted"
+                           x5-video-player-fullscreen="true"
+                           webkit-playsinline="true"
+                           x-webkit-airplay="true"
+                           playsinline="true"
+                           x5-playsinline
+                           preload="auto" autoplay="autoplay" style="width: 100%; margin: 0 auto;">
                             <source src="https://sblog.teamillion.com/video/languages.mp4?v=2" type="video/mp4">
                             <!--        <source src="--><?php //echo get_template_directory_uri().'/css/images/scrum.mp4' ?><!--" type="video/mp4">-->
                         </video>
@@ -84,7 +108,13 @@
             <h3 class="heading h2">一分钟开启学习之旅，绿色环保，不占用硬盘空间</h3>
             <div class="fluid-paragraph mt-3">
             </div>
-            <video loop="loop" id="home_video" poster="images/home/video.jpg" muted="muted" preload="auto" autoplay="autoplay" style="width: 100%; margin: 0 auto;">
+            <video loop="loop" id="home_video" poster="images/home/video.jpg" muted="muted"
+                   x5-video-player-fullscreen="true"
+                   webkit-playsinline="true"
+                   x-webkit-airplay="true"
+                   playsinline="true"
+                   x5-playsinline
+                   preload="auto" autoplay="autoplay" style="width: 100%; margin: 0 auto;">
                 <source src="https://sblog.teamillion.com/video/install.mp4?v=2" type="video/mp4">
                 <!--        <source src="--><?php //echo get_template_directory_uri().'/css/images/scrum.mp4' ?><!--" type="video/mp4">-->
             </video>
