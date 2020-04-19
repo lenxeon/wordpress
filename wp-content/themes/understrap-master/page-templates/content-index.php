@@ -41,6 +41,7 @@
                            x-webkit-airplay="true"
                            playsinline="true"
                            x5-playsinline
+                           controls="controls"
                            preload="auto" autoplay="autoplay" style="width: 100%; margin: 0 auto;">
                             <source src="https://sblog.teamillion.com/video/point.mp4?v=3" type="video/mp4">
                             <!--        <source src="--><?php //echo get_template_directory_uri().'/css/images/scrum.mp4' ?><!--" type="video/mp4">-->
